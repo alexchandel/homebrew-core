@@ -19,6 +19,7 @@ class Omniorb < Formula
   end
 
   depends_on "pkg-config" => :build
+  depends_on "python"
 
   resource "bindings" do
     url "https://downloads.sourceforge.net/project/omniorb/omniORBpy/omniORBpy-4.2.4/omniORBpy-4.2.4.tar.bz2"
@@ -31,7 +32,7 @@ class Omniorb < Formula
     system "make", "install"
 
     resource("bindings").stage do
-      system "./configure", "--prefix=#{prefix}"
+      system "./configure", "--prefix=#{prefix}", "PYTHON=python3"
       system "make", "install"
     end
   end
